@@ -1,0 +1,110 @@
+:root {
+    --primary-bg-color: #f9fbfd;
+    --card-bg-color: #ffffff;
+    --primary-color: hsl(206, 17%, 28%);
+    --secondary-color: hsl(360, 91%, 36%);
+    --accent-color: #e7e9eb;
+    --btn-font-size: 1rem;
+    --btn-padding: 10px 25px;
+    --border-radius: 5px;
+    --box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: var(--primary-bg-color);
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 0 20px;
+}
+
+header {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--primary-color);
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 30px;
+    /* Added to ensure space at the bottom */
+}
+
+.card-header::after,
+.card-footer::before {
+    content: " ";
+    display: block;
+    width: 100%;
+    background: var(--accent-color);
+    height: 2px;
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    color: #fff;
+    font-size: var(--btn-font-size);
+    padding: var(--btn-padding);
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: var(--box-shadow);
+}
+
+button[disabled] {
+    background: #c0c7cf;
+
+}
+
+#password {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px dashed #c0c7cf;
+    border-radius: var(--border-radius);
+    resize: none;
+    overflow: hidden;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 690px) {
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+
+    #password {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .btn {
+        font-size: 0.8rem;
+        padding: 6px 18px;
+    }
+}
