@@ -40,4 +40,5 @@ The following image shows the web application's appearance and functionality:
 
 ![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
 
-
+URL to code: https://github.com/maslla100/password-generator
+URL to password generator app: https://maslla100.github.io/password-generator/
