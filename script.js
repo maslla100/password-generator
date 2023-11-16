@@ -2,15 +2,31 @@
 
 // Function to prompt user for password criteria and generate password
 function generatePassword() {
+    var passwordInput = document.querySelector("#promptInput");
+    var currentLength = passwordInput.value;
+    var passwordLength;
+
+    // Check if the user has inputted the password length
+    if (!currentLength) {
+        alert("Please input the password length to get started.");
+        return "";
+    } else {
+        // Ask if the user wants to reuse the existing length
+        var reuseLength = confirm("Do you want to reuse the current password length (" + currentLength + " characters)?");
+
+        if (reuseLength) {
+            passwordLength = parseInt(currentLength);
+        } else {
+            passwordLength = parseInt(prompt("Enter the new password length (8-128 characters):"));
+            if (!isValidLength(passwordLength)) {
+                displayErrorMessage("Password length must be between 8 and 128 characters.");
+                return "";
+            }
+        }
+    }
+
     var password = "";
     var passwordArray = [];
-
-    // Get password length from promptInput and validate input
-    var passwordLength = parseInt(document.querySelector("#promptInput").value);
-    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-        displayErrorMessage("Password length must be between 8 and 128 characters.");
-        return "";
-    }
 
     // Confirm password criteria with the user
     var includeLowercase = confirm("Would you like to include lowercase letters in your password?");
@@ -43,6 +59,11 @@ function generatePassword() {
     return password;
 }
 
+// Helper function to validate password length
+function isValidLength(length) {
+    return !isNaN(length) && length >= 8 && length <= 128;
+}
+
 // Function to display error messages on the webpage
 function displayErrorMessage(message) {
     alert(message); // Placeholder for your implementation
@@ -63,17 +84,16 @@ function copyToClipboard() {
         document.execCommand("copy");
         alert("Password copied to clipboard!");
     } else {
-        alert("No password to copy."); // Message when there is no password
+        alert("No password to copy.");
     }
 }
-
 
 // Function to toggle dark mode
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
 }
 
-// Event listener for the Generate Password button
+// Event listeners
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", function () {
     var password = generatePassword();
@@ -81,28 +101,12 @@ generateBtn.addEventListener("click", function () {
     passwordText.value = password;
 });
 
-// Event listener for the Copy Password button
 var copyBtn = document.querySelector("#copy");
 copyBtn.addEventListener("click", copyToClipboard);
 
-// Event listener for the Dark Mode Toggle button
 var darkModeBtn = document.querySelector("#darkModeToggle");
 darkModeBtn.addEventListener("click", toggleDarkMode);
 
-// Function to reset the application
-function resetApplication() {
-    // Clear the password input field
-    document.querySelector("#promptInput").value = '';
-
-    // Clear the generated password field
-    var passwordText = document.querySelector("#password");
-    passwordText.value = '';
-
-    // Clear any displayed messages
-    document.querySelector("#passwordLengthMsg").textContent = '';
-}
-
-// Event listener for the Reset button
 var resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", resetApplication);
 
@@ -112,24 +116,12 @@ function resetApplication() {
     var passwordText = document.querySelector("#password");
     var messageBox = document.querySelector("#passwordLengthMsg");
 
-    // Check if there's anything to reset
     if (passwordInput.value === '' && passwordText.value === '') {
         alert("Nothing to reset. Please input your password length and generate a password first.");
     } else {
-        // Clear the password input field
         passwordInput.value = '';
-
-        // Clear the generated password field
         passwordText.value = '';
-
-        // Clear any displayed messages and show reset confirmation
         messageBox.textContent = 'The application has been reset.';
-
-        // Optional: Clear the reset confirmation message after a delay
-        setTimeout(function () {
-            messageBox.textContent = '';
-        }, 3000); // Clears the message after 3 seconds
+        setTimeout(function () { messageBox.textContent = ''; }, 3000);
     }
 }
-
-
