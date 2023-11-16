@@ -8,12 +8,32 @@
     --btn-padding: 10px 25px;
     --border-radius: 5px;
     --box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
 }
+
+/* Dark Mode Styles */
+.dark-mode {
+    --primary-bg-color: #121212;
+    --card-bg-color: #1e1e1e;
+    --primary-color: #ffffff;
+    --secondary-color: hsl(360, 91%, 50%);
+    --accent-color: #3c3c3c;
+
+}
+
+.dark-mode .btn:hover {
+    background-color: #f0ad4e;
+
+    color: #000;
+}
+
+
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    padding: 5px;
 }
 
 html,
@@ -32,7 +52,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100%;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 header {
@@ -45,21 +65,11 @@ header {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     color: var(--primary-color);
-    max-width: 800px;
-    width: 100%;
+    width: auto;
     padding: 30px;
     margin-bottom: 30px;
-    /* Added to ensure space at the bottom */
 }
 
-.card-header::after,
-.card-footer::before {
-    content: " ";
-    display: block;
-    width: 100%;
-    background: var(--accent-color);
-    height: 2px;
-}
 
 .btn {
     background-color: var(--secondary-color);
@@ -71,32 +81,53 @@ header {
     cursor: pointer;
     border: none;
     box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease;
 }
 
-button[disabled] {
-    background: #c0c7cf;
+.btn:hover {
+    background-color: #d9534f;
+    color: #fff;
+
+}
+
+
+#password {
+    width: 100%;
+    padding: 1%;
+    margin: 5% 0;
+    border-radius: var(--border-radius);
+    text-align: center;
+
+}
+
+#promptInput {
+    width: 100%;
+    border: 2px solid var(--primary-color);
+    margin: 10px 0;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 10px;
 
 }
 
 #password {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
     border: 2px dashed #c0c7cf;
-    border-radius: var(--border-radius);
-    resize: none;
-    overflow: hidden;
     font-size: 1.2rem;
     text-align: center;
+
 }
 
 /* Responsive Design */
+
+
 @media (max-width: 690px) {
     .btn {
         font-size: 0.9rem;
         padding: 8px 20px;
+        margin-top: 3%;
     }
 
+    #promptInput,
     #password {
         font-size: 1rem;
     }
@@ -105,6 +136,6 @@ button[disabled] {
 @media (max-width: 500px) {
     .btn {
         font-size: 0.8rem;
-        padding: 6px 18px;
+        padding: 6px 18;
+        margin-top: 3%;
     }
-}
